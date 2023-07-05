@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:w="clr-namespace:AiForms.Maui.Layouts;assembly=AiForms.Maui.Layouts"
+    x:Class="Sample.MainPage"
+    x:Name="me">
+
+    <ScrollView>
+        <w:WrapLayout Spacing="4" Padding="16" UniformColumns="0" IsSquare="True" 
+                      BindableLayout.ItemsSource="{Binding ItemsSource,Source={x:Reference me}}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Border Padding="4" StrokeShape="RoundRectangle 4">
+                        <Label Text="{Binding}" />
+                    </Border>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+
+        </w:WrapLayout>
+    </ScrollView>
+
+</ContentPage>
+
