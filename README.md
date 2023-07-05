@@ -31,8 +31,6 @@ Install-Package AiForms.Maui.Layouts
 
 This Layout performs wrapping on the boundaries.
 
-_By Flex Layout having come, there is seldom opportunity using this layout. But it can be used when you want to arrange uniformly each items depending on screen width or make it square._
-
 ### Parameters
 
 * Spacing
