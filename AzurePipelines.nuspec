@@ -36,5 +36,9 @@
         <file src="artifacts/net7.0-maccatalyst/AiForms.Maui.Layouts.dll" target="lib/net7.0-maccatalyst14.2" />
         <file src="artifacts/net7.0-maccatalyst/AiForms.Maui.Layouts.xml" target="lib/net7.0-maccatalyst14.2" />
         <file src="artifacts/net7.0-maccatalyst/AiForms.Maui.Layouts.pdb" target="lib/net7.0-maccatalyst14.2" />
+        <!-- Windows -->
+        <file src="artifacts/net7.0-windows10.0.19041.0/AiForms.Maui.Layouts.dll" target="lib/net7.0-windows10.0.19041.0" />
+        <file src="artifacts/net7.0-windows10.0.19041.0/AiForms.Maui.Layouts.xml" target="lib/net7.0-windows10.0.19041.0" />
+        <file src="artifacts/net7.0-windows10.0.19041.0/AiForms.Maui.Layouts.pdb" target="lib/net7.0-windows10.0.19041.0" />
     </files>
 </package>
