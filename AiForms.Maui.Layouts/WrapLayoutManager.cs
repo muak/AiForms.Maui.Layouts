@@ -4,7 +4,7 @@ using Microsoft.Maui.Layouts;
 namespace AiForms.Maui.Layouts;
 
 /// <summary>
-/// WrapLayoutのレイアウトマネージャーです。
+/// Layout manager for WrapLayout.
 /// </summary>
 /// <param name="_layout"></param>
 public class WrapLayoutManager(WrapLayout _layout) : ILayoutManager
@@ -16,7 +16,7 @@ public class WrapLayoutManager(WrapLayout _layout) : ILayoutManager
     bool IsSquare => _layout.IsSquare;
 
     /// <summary>
-    /// WrapLayoutの子要素を配置します。
+    /// Arranges the child elements of WrapLayout.
     /// </summary>
     /// <param name="bounds"></param>
     /// <returns></returns>
@@ -33,7 +33,7 @@ public class WrapLayoutManager(WrapLayout _layout) : ILayoutManager
     }    
 
     /// <summary>
-    /// WrapLayoutのサイズを計測します。
+    /// Measures the size of WrapLayout.
     /// </summary>
     /// <param name="widthConstraint"></param>
     /// <param name="heightConstraint"></param>
@@ -75,7 +75,7 @@ public class WrapLayoutManager(WrapLayout _layout) : ILayoutManager
 
         var Children = _layout.Children;
         
-        var exceptedWidth = widthConstraint - (UniformColumns - 1) * Spacing; //excepted spacing width
+        var exceptedWidth = widthConstraint - (UniformColumns - 1) * Spacing; // expected spacing width
 
         var columnsSize = exceptedWidth / UniformColumns;
         if (columnsSize < 1)

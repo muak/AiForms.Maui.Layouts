@@ -3,7 +3,7 @@ using Microsoft.Maui.Layouts;
 namespace AiForms.Maui.Layouts;
 
 /// <summary>
-/// コンテンツを親要素のサイズに合わせてFitさせるレイアウトです。
+/// A layout that fits content to the parent element's size.
 /// </summary>
 public class FitLayout : Layout
 {
@@ -18,8 +18,8 @@ public class FitLayout : Layout
         );
 
     /// <summary>
-    /// Fitさせる方向を指定します。
-    /// OrientationがVerticalの場合、コンテンツの高さを画面に合わせて縮小します。
+    /// Specifies the direction for fitting.
+    /// When Orientation is Vertical, the content height is scaled down to fit the screen.
     /// </summary>
     public ItemsLayoutOrientation Orientation
     {
@@ -38,9 +38,9 @@ public class FitLayout : Layout
         );
 
     /// <summary>
-    /// 本来想定される高さを指定します。
-    /// 未設定の場合はコンテンツの高さを無制限に計測します。
-    /// OrientationがVerticalの場合に有効です。
+    /// Specifies the originally intended height.
+    /// If not set, content height is measured without limit.
+    /// Effective when Orientation is Vertical.
     /// </summary>
     public double EstimatedHeight
     {
@@ -59,9 +59,9 @@ public class FitLayout : Layout
         );
 
     /// <summary>
-    /// 本来想定される幅を指定します。
-    /// 未設定の場合はコンテンツの幅を無制限に計測します。
-    /// OrientationがHorizontalの場合に有効です。
+    /// Specifies the originally intended width.
+    /// If not set, content width is measured without limit.
+    /// Effective when Orientation is Horizontal.
     /// </summary>
     public double EstimatedWidth
     {
@@ -79,10 +79,10 @@ public class FitLayout : Layout
         );
 
     /// <summary>
-    /// 縮小する際に余裕を持たせるためのマージンを指定します。
-    /// デフォルト0(0%)です。
-    /// 例えば、ScaleMarginが0.05の場合、コンテンツの高さが画面の高さを超える場合、
-    /// コンテンツの高さを画面の高さの95%に縮小します。
+    /// Specifies margin to provide extra space when scaling down.
+    /// Default is 0 (0%).
+    /// For example, when ScaleMargin is 0.05, if the content height exceeds the screen height,
+    /// the content height is scaled down to 95% of the screen height.
     /// </summary>
     public double ScaleMargin
     {

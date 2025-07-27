@@ -3,13 +3,13 @@ using Microsoft.Maui.Layouts;
 namespace AiForms.Maui.Layouts;
 
 /// <summary>
-/// FitLayoutのレイアウトマネージャーです。
+/// Layout manager for FitLayout.
 /// </summary>
 /// <param name="_layout"></param>
 public class FitLayoutManager(FitLayout _layout) : ILayoutManager
 {
     /// <summary>
-    /// FitLayoutの子要素を親要素のサイズに合わせて配置します。
+    /// Arranges FitLayout's child elements to fit the parent element's size.
     /// </summary>
     /// <param name="bounds"></param>
     /// <returns></returns>
@@ -27,7 +27,7 @@ public class FitLayoutManager(FitLayout _layout) : ILayoutManager
             throw new InvalidCastException("FitLayout can only contain View elements.");
         }
         
-        // スケールをリセット
+        // Reset scale
         contentView.Scale = 1.0d;
         return _layout.Orientation switch
         {
@@ -42,20 +42,20 @@ public class FitLayoutManager(FitLayout _layout) : ILayoutManager
         var estimatedHeight = _layout.EstimatedHeight > 0d ? 
             _layout.EstimatedHeight : double.PositiveInfinity;
         
-        // コンテンツの本来のサイズを計測
+        // Measure the original size of the content
         var size = contentView.Measure(bounds.Width, estimatedHeight);
 
-        // 必要な高さを取得
+        // Get required height
         var requestHeight = _layout.EstimatedHeight > 0d ? 
                 _layout.EstimatedHeight : size.Height;
-        // 本来の高さが画面コンテンツ領域の高さをオーバーしていれば
+        // If the original height exceeds the screen content area height
         if (requestHeight > bounds.Height)
         {
-            // 画面に収まるスケールを計算（余裕を持たせるためScaleMargin分低くする）
+            // Calculate scale to fit the screen (reduce by ScaleMargin for extra space)
             var scale = bounds.Height / requestHeight - _layout.ScaleMargin;
-            // 全体を縮小する
+            // Scale down the entire content
             contentView.Scale = scale;
-            // y座標調整(コンテンツが上にくるように)
+            // Adjust y coordinate (so content comes to the top)
             var scrollY = (requestHeight - bounds.Height) / 2d * -1;
 
             var rect = new Rect(0, scrollY, bounds.Width, requestHeight);
@@ -63,7 +63,7 @@ public class FitLayoutManager(FitLayout _layout) : ILayoutManager
 
             return rect.Size;
         }
-        // 収まる場合はそのまま描画
+        // If it fits, draw as is
         else
         {
             var rect = new Rect(0, 0, bounds.Width, bounds.Height);
@@ -78,20 +78,20 @@ public class FitLayoutManager(FitLayout _layout) : ILayoutManager
         var estimatedWidth = _layout.EstimatedWidth > 0d ? 
             _layout.EstimatedWidth : double.PositiveInfinity;
         
-        // コンテンツの本来のサイズを計測
+        // Measure the original size of the content
         var size = contentView.Measure(estimatedWidth, bounds.Height);
 
-        // 必要な幅を取得
+        // Get required width
         var requestWidth = _layout.EstimatedWidth > 0d ? 
                 _layout.EstimatedWidth : size.Width;
-        // 本来の幅が画面コンテンツ領域の幅をオーバーしていれば
+        // If the original width exceeds the screen content area width
         if (requestWidth > bounds.Width)
         {
-            // 画面に収まるスケールを計算（余裕を持たせるためScaleMargin分低くする）
+            // Calculate scale to fit the screen (reduce by ScaleMargin for extra space)
             var scale = bounds.Width / requestWidth - _layout.ScaleMargin;
-            // 全体を縮小する
+            // Scale down the entire content
             contentView.Scale = scale;
-            // x座標調整(コンテンツが左にくるように)
+            // Adjust x coordinate (so content comes to the left)
             var scrollX = (requestWidth - bounds.Width) / 2d * -1;
 
             var rect = new Rect(scrollX, 0, requestWidth, bounds.Height);
@@ -99,7 +99,7 @@ public class FitLayoutManager(FitLayout _layout) : ILayoutManager
 
             return rect.Size;
         }
-        // 収まる場合はそのまま描画
+        // If it fits, draw as is
         else
         {
             var rect = new Rect(0, 0, bounds.Width, bounds.Height);
@@ -110,8 +110,8 @@ public class FitLayoutManager(FitLayout _layout) : ILayoutManager
     }
 
     /// <summary>
-    /// Measureメソッドは、FitLayoutでは特に意味を持たないため、
-    /// 親要素のサイズをそのまま返します。
+    /// The Measure method doesn't have particular meaning in FitLayout,
+    /// so it returns the parent element's size as is.
     /// </summary>
     /// <param name="widthConstraint"></param>
     /// <param name="heightConstraint"></param>

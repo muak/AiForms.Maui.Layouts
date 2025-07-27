@@ -4,7 +4,7 @@ using Microsoft.Maui.Layouts;
 namespace AiForms.Maui.Layouts;
 
 /// <summary>
-/// 自動的に折り返しを行うレイアウトです。
+/// A layout that automatically wraps elements.
 /// </summary>
 public class WrapLayout: Layout
 {
@@ -18,7 +18,7 @@ public class WrapLayout: Layout
         );
 
     /// <summary>
-    /// 要素間のスペースを指定します。
+    /// Specifies the space between elements.
     /// </summary>
     public double Spacing{
         get { return (double)GetValue(SpacingProperty); }
@@ -35,9 +35,9 @@ public class WrapLayout: Layout
         );
 
     /// <summary>
-    /// 均等幅のカラム数を指定します。
-    /// 1以上で画面幅に合わせて均等に分割されます。
-    /// 0の場合は要素の幅に合わせて折り返しを行います。
+    /// Specifies the number of uniform-width columns.
+    /// When set to 1 or higher, elements are divided evenly according to screen width.
+    /// When set to 0, wrapping is performed according to element width.
     /// </summary>
     public int UniformColumns{
         get { return (int)GetValue(UniformColumnsProperty); }
@@ -54,9 +54,9 @@ public class WrapLayout: Layout
         );
 
     /// <summary>
-    /// 要素を正方形にするかどうかを指定します。
-    /// trueの場合、要素の幅と高さを同じにします。
-    /// UniformColumnsが1以上の場合のみ有効です。
+    /// Specifies whether to make elements square.
+    /// When true, makes element width and height equal.
+    /// Only effective when UniformColumns is 1 or higher.
     /// </summary>
     public bool IsSquare{
         get { return (bool)GetValue(IsSquareProperty); }
