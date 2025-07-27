@@ -18,7 +18,7 @@
 		<PackageLicenseUrl>https://github.com/muak/AiForms.Maui.Layouts/blob/main/LICENSE.txt</PackageLicenseUrl>
 		<PackageIconUrl>https://raw.githubusercontent.com/muak/AiForms.Maui.Layouts/main/images/icon.png</PackageIconUrl>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
-		<Description>NET MAUI Custom Layouts(WrapLayout)</Description>
+		<Description>NET MAUI Custom Layouts(WrapLayout,FitLayout)</Description>
 		<PackageTags>MAUI Layout WrapLayout WrapPanel Wrap FitLayout</PackageTags>
 	</PropertyGroup>
 
