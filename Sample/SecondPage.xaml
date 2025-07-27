@@ -88,7 +88,8 @@
                 <f:FitLayout 
                     Orientation="{Binding Orientation.Value}"
                     EstimatedWidth="{Binding EstimatedWidth.Value}"
-                    EstimatedHeight="{Binding EstimatedHeight.Value}">
+                    EstimatedHeight="{Binding EstimatedHeight.Value}"
+                    ScaleMargin="0">
                     <Grid
                         RowDefinitions="Auto,Auto,Auto,Auto,*"
                         ColumnDefinitions="Auto,Auto,*">

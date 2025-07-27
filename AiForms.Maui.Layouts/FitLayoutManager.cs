@@ -51,8 +51,8 @@ public class FitLayoutManager(FitLayout _layout) : ILayoutManager
         // 本来の高さが画面コンテンツ領域の高さをオーバーしていれば
         if (requestHeight > bounds.Height)
         {
-            // 画面に収まるスケールを計算（余裕を持たせるため5%低くする）
-            var scale = bounds.Height / requestHeight - 0.05d;
+            // 画面に収まるスケールを計算（余裕を持たせるためScaleMargin分低くする）
+            var scale = bounds.Height / requestHeight - _layout.ScaleMargin;
             // 全体を縮小する
             contentView.Scale = scale;
             // y座標調整(コンテンツが上にくるように)
@@ -87,8 +87,8 @@ public class FitLayoutManager(FitLayout _layout) : ILayoutManager
         // 本来の幅が画面コンテンツ領域の幅をオーバーしていれば
         if (requestWidth > bounds.Width)
         {
-            // 画面に収まるスケールを計算（余裕を持たせるため5%低くする）
-            var scale = bounds.Width / requestWidth - 0.05d;
+            // 画面に収まるスケールを計算（余裕を持たせるためScaleMargin分低くする）
+            var scale = bounds.Width / requestWidth - _layout.ScaleMargin;
             // 全体を縮小する
             contentView.Scale = scale;
             // x座標調整(コンテンツが左にくるように)

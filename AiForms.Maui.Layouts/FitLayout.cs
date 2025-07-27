@@ -68,6 +68,27 @@ public class FitLayout : Layout
         get => (double)GetValue(EstimatedWidthProperty);
         set => SetValue(EstimatedWidthProperty, value);
     }
+
+    public static BindableProperty ScaleMarginProperty =
+        BindableProperty.Create(
+            nameof(ScaleMargin),
+            typeof(double),
+            typeof(FitLayout),
+            0d,
+            defaultBindingMode: BindingMode.OneWay
+        );
+
+    /// <summary>
+    /// 縮小する際に余裕を持たせるためのマージンを指定します。
+    /// デフォルト0(0%)です。
+    /// 例えば、ScaleMarginが0.05の場合、コンテンツの高さが画面の高さを超える場合、
+    /// コンテンツの高さを画面の高さの95%に縮小します。
+    /// </summary>
+    public double ScaleMargin
+    {
+        get => (double)GetValue(ScaleMarginProperty);
+        set => SetValue(ScaleMarginProperty, value);
+    }
     
     protected override ILayoutManager CreateLayoutManager()
     {

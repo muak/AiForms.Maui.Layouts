@@ -11,6 +11,7 @@ This is a collection of NET MAUI custom layouts
 ## Features
 
 * [WrapLayout](#wraplayout)
+* [FitLayout](#fitlayout)
 
 <img src="images/1.png" width=200 /><img src="images/2.png" width=200 /><img src="images/3.png" width=200 />
 
@@ -62,6 +63,58 @@ This Layout performs wrapping on the boundaries.
 </ContentPage>
 ```
 
+## FitLayout
+
+This Layout automatically scales content to fit within the parent container when it overflows.
+
+### Parameters
+
+* Orientation
+    * Direction to fit the content (Vertical or Horizontal)
+    * Default: Vertical
+* EstimatedHeight
+    * Expected height of the content (used when Orientation is Vertical)
+    * If not set (-1), content height is measured without constraints
+    * Default: -1
+* EstimatedWidth
+    * Expected width of the content (used when Orientation is Horizontal)
+    * If not set (-1), content width is measured without constraints
+    * Default: -1
+
+### How it works
+
+* **Vertical Mode**: When content height exceeds container height, it scales down to 95% of the fitting ratio
+* **Horizontal Mode**: When content width exceeds container width, it scales down to 95% of the fitting ratio
+* Content is positioned to align with the top-left corner after scaling
+
+### How to write with Xaml
+
+```xml
+<ContentPage
+		xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+		xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+		xmlns:l="clr-namespace:AiForms.Maui.Layouts;assembly=AiForms.Maui.Layouts"
+		x:Class="Sample.Views.MainPage">
+
+    <!-- Vertical fitting example -->
+    <l:FitLayout Orientation="Vertical" EstimatedHeight="800">
+        <StackLayout>
+            <Label Text="This content will be scaled to fit vertically" />
+            <BoxView Color="Red" HeightRequest="500" />
+            <BoxView Color="Blue" HeightRequest="300" />
+        </StackLayout>
+    </l:FitLayout>
+
+    <!-- Horizontal fitting example -->
+    <l:FitLayout Orientation="Horizontal" EstimatedWidth="1200">
+        <StackLayout Orientation="Horizontal">
+            <BoxView Color="Green" WidthRequest="600" />
+            <BoxView Color="Yellow" WidthRequest="600" />
+        </StackLayout>
+    </l:FitLayout>
+
+</ContentPage>
+```
 
 ## License
 
