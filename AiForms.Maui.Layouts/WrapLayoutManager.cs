@@ -3,20 +3,23 @@ using Microsoft.Maui.Layouts;
 
 namespace AiForms.Maui.Layouts;
 
-public class WrapLayoutManager: ILayoutManager
+/// <summary>
+/// Layout manager for WrapLayout.
+/// </summary>
+/// <param name="_layout"></param>
+public class WrapLayoutManager(WrapLayout _layout) : ILayoutManager
 {
-    WrapLayout _layout;
     double WidthRequest => _layout.WidthRequest;
     double HeightRequest => _layout.HeightRequest;
     int UniformColumns => _layout.UniformColumns;
     double Spacing => _layout.Spacing;
     bool IsSquare => _layout.IsSquare;
 
-    public WrapLayoutManager(WrapLayout layout)
-    {
-        _layout = layout;
-    }
-
+    /// <summary>
+    /// Arranges the child elements of WrapLayout.
+    /// </summary>
+    /// <param name="bounds"></param>
+    /// <returns></returns>
     public Size ArrangeChildren(Rect bounds)
     {
         if(_layout.UniformColumns > 0)
@@ -29,6 +32,12 @@ public class WrapLayoutManager: ILayoutManager
         }
     }    
 
+    /// <summary>
+    /// Measures the size of WrapLayout.
+    /// </summary>
+    /// <param name="widthConstraint"></param>
+    /// <param name="heightConstraint"></param>
+    /// <returns></returns>
     public Size Measure(double widthConstraint, double heightConstraint)
     {
 
@@ -66,24 +75,24 @@ public class WrapLayoutManager: ILayoutManager
 
         var Children = _layout.Children;
         
-        var exceptedWidth = widthConstraint - (UniformColumns - 1) * Spacing; //excepted spacing width
+        var exceptedWidth = widthConstraint - (UniformColumns - 1) * Spacing; // expected spacing width
 
-        var columsSize = exceptedWidth / UniformColumns;
-        if (columsSize < 1)
+        var columnsSize = exceptedWidth / UniformColumns;
+        if (columnsSize < 1)
         {
-            columsSize = 1;
+            columnsSize = 1;
         }
 
         foreach (var child in Children.Where(c => c.Visibility == Visibility.Visible))
         {
 
-            var size = child.Measure(columsSize, heightConstraint);
-            var itemWidth = (double)columsSize;
+            var size = child.Measure(columnsSize, heightConstraint);
+            var itemWidth = (double)columnsSize;
             var itemHeight = size.Height;
 
             if (IsSquare)
             {
-                itemHeight = columsSize;
+                itemHeight = columnsSize;
             }
 
             rowHeight = Math.Max(rowHeight, itemHeight + Spacing);
@@ -99,7 +108,7 @@ public class WrapLayoutManager: ILayoutManager
 
             xPos += itemWidth + Spacing;
 
-            if (xPos + columsSize > limitX)
+            if (xPos + columnsSize > limitX)
             {
                 xPos = x + _layout.Padding.Left;
                 yPos += rowHeight;
@@ -170,9 +179,9 @@ public class WrapLayoutManager: ILayoutManager
             }
 
             xPos += itemWidth + Spacing;
-            var nextWitdh = childBlock.next.size.Width;
+            var nextWidth = childBlock.next.size.Width;
 
-            if (xPos + nextWitdh > limitX)
+            if (xPos + nextWidth > limitX)
             {
                 xPos = x + _layout.Padding.Left;
                 yPos += rowHeight;
