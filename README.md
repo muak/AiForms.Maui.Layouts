@@ -19,7 +19,10 @@ English | [日本語](README.ja.md)
 
 ## Demo
 
-https://twitter.com/muak_x/status/830061279330996224
+- WrapLayout
+  - https://x.com/muak_x/status/830061279330996224
+- FitLayout
+  - https://x.com/muak_x/status/1949374845109813758
 
 ## Nuget Installation
 
