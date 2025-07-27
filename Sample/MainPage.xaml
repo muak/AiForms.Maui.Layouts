@@ -3,22 +3,64 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:w="clr-namespace:AiForms.Maui.Layouts;assembly=AiForms.Maui.Layouts"
+    xmlns:local="clr-namespace:Sample"
     x:Class="Sample.MainPage"
+    x:DataType="local:MainPage"
     x:Name="me">
 
-    <ScrollView>
-        <w:WrapLayout Spacing="4" Padding="16" UniformColumns="0" IsSquare="True" 
-                      BindableLayout.ItemsSource="{Binding ItemsSource,Source={x:Reference me}}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <Border Padding="4" StrokeShape="RoundRectangle 4">
-                        <Label Text="{Binding}" />
-                    </Border>
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
+    <Grid RowDefinitions="Auto,*">
+        <Grid
+            Grid.Row="0"
+            RowDefinitions="Auto,Auto"
+            ColumnDefinitions="*,*,*,*"
+            ColumnSpacing="4"
+            RowSpacing="4"
+            Padding="8">
+            <Button Grid.Row="0" Grid.Column="0" Text="Add" Command="{Binding AddCommand}" />
+            <Button Grid.Row="0" Grid.Column="1" Text="Del" Command="{Binding DeleteCommand}"  />
+            <Button Grid.Row="0" Grid.Column="2" Text="Rep" Command="{Binding ReplaceCommand}"  />
+            <Button Grid.Row="0" Grid.Column="3" Text="Clr" Command="{Binding ClearCommand}"  />
+            <Label Grid.Row="1" Grid.Column="0" Text="Uniform" VerticalOptions="Center" HorizontalOptions="End" />
+            <Switch Grid.Row="1" Grid.Column="1" IsToggled="{Binding IsUniform.Value}" /> 
+            <Label Grid.Row="1" Grid.Column="2"  Text="Square" VerticalOptions="Center" HorizontalOptions="End" />
+            <Switch Grid.Row="1" Grid.Column="3"  IsToggled="{Binding IsSquare.Value}"/>            
+        </Grid>
+        
+        <ScrollView
+            Grid.Row="1">
+            <w:WrapLayout 
+                Spacing="4" 
+                Padding="16" 
+                UniformColumns="{Binding UniformColumns.Value}" 
+                IsSquare="{Binding IsSquare.Value}"
+                BindableLayout.ItemsSource="{Binding ItemsSource}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="local:Hoge">
+                        <Border
+                            StrokeThickness="0"
+                            BackgroundColor="{Binding Color}" 
+                            WidthRequest="{Binding Width}" 
+                            HeightRequest="{Binding Height}" 
+                            Padding="3">
+                            <Border.Triggers>
+                                <DataTrigger TargetType="Border" Binding="{Binding BindingContext.IsSquare.Value,Source={x:Reference me}}" Value="True">
+                                    <Setter Property="WidthRequest" Value="-1" />
+                                    <Setter Property="HeightRequest" Value="-1" />
+                                </DataTrigger>
+                                <DataTrigger TargetType="Border" Binding="{Binding BindingContext.IsUniform.Value,Source={x:Reference me}}" Value="True">
+                                    <Setter Property="WidthRequest" Value="-1" />
+                                </DataTrigger>
+                            </Border.Triggers>
+                            <Label 
+                                   VerticalTextAlignment="Center" HorizontalTextAlignment="Center"   
+                                   Text="{Binding Name}" FontSize="9" FontAttributes="Bold"
+                                   TextColor="{Binding Color,Converter={local:BackForeColorConverter}}" />
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
 
-        </w:WrapLayout>
-    </ScrollView>
-
+            </w:WrapLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>
 

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage 
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:f="clr-namespace:AiForms.Maui.Layouts;assembly=AiForms.Maui.Layouts"
+    xmlns:local="clr-namespace:Sample"
+    xmlns:ios="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.iOSSpecific;assembly=Microsoft.Maui.Controls"
+    ios:Page.UseSafeArea="True"
+    x:Class="Sample.SecondPage"
+    x:DataType="local:SecondPage">
+    
+    <Grid RowDefinitions="Auto,*">
+        <Grid Grid.Row="0"
+              RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto"
+              RowSpacing="4"
+              Padding="8"
+              >
+            <Label Grid.Row="0"
+                   Text="Scale"
+                   HorizontalOptions="Center"/>
+            <Grid 
+                Grid.Row="1"
+                ColumnDefinitions="*,*,*,*"
+                RadioButtonGroup.GroupName="Scale"
+                RadioButtonGroup.SelectedValue="{Binding LayoutScale.Value}">
+                <RadioButton Grid.Column="0" Value="{Binding MinSize.Value}" Content="25%" GroupName="Scale" />
+                <RadioButton Grid.Column="1"  Value="{Binding SmallSize.Value}" Content="50%" GroupName="Scale" />
+                <RadioButton Grid.Column="2"  Value="{Binding MediumSize.Value}" Content="75%" GroupName="Scale" />
+                <RadioButton Grid.Column="3"  Value="{Binding LargeSize.Value}" Content="100%" GroupName="Scale" />
+            </Grid>
+            
+            <Label
+                Grid.Row="2" 
+                Text="Orientation"
+                HorizontalOptions="Center" />
+            
+            <Grid
+                Grid.Row="3"
+                ColumnDefinitions="*,*"
+                RadioButtonGroup.GroupName="Orientation"
+                RadioButtonGroup.SelectedValue="{Binding Orientation.Value}">
+                <RadioButton Grid.Column="0"  Value="{Binding Horizontal.Value}" Content="Horizontal" GroupName="Orientation" />
+                <RadioButton Grid.Column="1" Value="{Binding Vertical.Value}" Content="Vertical" GroupName="Orientation" />
+            </Grid>
+            
+            <Label
+                Grid.Row="4" 
+                Text="Estimated Size"
+                HorizontalOptions="Center" />
+            
+            <Grid
+                Grid.Row="5"
+                ColumnDefinitions="*,*,*,*">
+                <Label
+                    Grid.Column="0"
+                    Text="Width"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"/>
+                <Switch
+                    Grid.Column="1"
+                    IsToggled="{Binding UseEstimatedWidth.Value}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    />
+                <Label
+                    Grid.Column="2"
+                    Text="Height"
+                    VerticalOptions="Center" 
+                    HorizontalOptions="End"/>
+                <Switch
+                    Grid.Column="3"
+                    IsToggled="{Binding UseEstimatedHeight.Value}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Start"
+                    />
+            </Grid>
+            
+        </Grid>
+        
+        <Grid Grid.Row="1" x:Name="container">
+            <Border
+                StrokeThickness="2"
+                Stroke="Gray"
+                VerticalOptions="Center" 
+                HorizontalOptions="Center"
+                HeightRequest="{Binding LayoutHeight.Value}"
+                WidthRequest="{Binding LayoutWidth.Value}">
+                <f:FitLayout 
+                    Orientation="{Binding Orientation.Value}"
+                    EstimatedWidth="{Binding EstimatedWidth.Value}"
+                    EstimatedHeight="{Binding EstimatedHeight.Value}">
+                    <Grid
+                        RowDefinitions="Auto,Auto,Auto,Auto,*"
+                        ColumnDefinitions="Auto,Auto,*">
+                        <Label
+                            Grid.Row="0"
+                            Grid.ColumnSpan="3"
+                            Text="FitLayout Sample - AiForms.Maui.Layouts"
+                            FontAttributes="Bold"
+                            FontSize="24"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                            Margin="16,24,16,16" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Text="Button 1"
+                            BackgroundColor="SkyBlue" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            Text="Button 2"
+                            BackgroundColor="Gold" />
+                        <Label
+                            Grid.Row="1"
+                            Grid.Column="2"
+                            Text="Button 3"
+                            BackgroundColor="MediumAquamarine"
+                             />
+                
+                        <Border
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            BackgroundColor="Green"
+                            StrokeThickness="1"
+                            StrokeShape ="RoundRectangle 10"
+                            HeightRequest="100"
+                            />
+                        
+                        <Border
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            BackgroundColor="BlueViolet"
+                            StrokeShape="RoundRectangle 10"
+                            HeightRequest="150" />
+                        
+                        <Border
+                            Grid.Row="3"
+                            Grid.Column="2"
+                            BackgroundColor="DarkOrange"
+                            StrokeShape="RoundRectangle 10"
+                            HeightRequest="150"
+                            />
+                        
+                        <Border
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            BackgroundColor="LightCoral"
+                            StrokeShape="RoundRectangle 10"/>
+                        
+                        <Border
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            BackgroundColor="LightSeaGreen"
+                            StrokeShape="RoundRectangle 10"
+                        />
+                    </Grid>
+                </f:FitLayout>
+            </Border>
+        </Grid>
+        
+    </Grid>
+    
+</ContentPage> 
